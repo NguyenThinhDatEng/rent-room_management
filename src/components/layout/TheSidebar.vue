@@ -35,8 +35,8 @@ export default {
 $item__bg: #55efc4;
 
 .sidebar {
-  height: 100%;
   flex: 1.5;
+  height: fit-content;
   background-color: paleturquoise;
   padding: 8px;
 

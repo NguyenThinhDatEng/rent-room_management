@@ -6,7 +6,12 @@
         <p class="ml-2">Phòng trọ của tôi</p>
       </div>
       <div class="header__right">
-        <input type="number" :value="Function.ge" />
+        <input
+          type="number"
+          :value="Function.getCurrentYear()"
+          min-length="4"
+          max-length="4"
+        />
       </div>
     </div>
   </div>
@@ -29,6 +34,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$input__border--hover: #81ecec;
+
 #theHeader {
   .header {
     display: flex;
@@ -52,6 +59,18 @@ export default {
     .header__right {
       display: flex;
       align-items: center;
+
+      input {
+        padding-left: 8px;
+        border: 1px solid #afafaf;
+        border-radius: 4px;
+        outline: none;
+        width: 80px;
+
+        &:hover {
+          border-color: $input__border--hover;
+        }
+      }
     }
   }
 }

@@ -1,3 +1,13 @@
+@import url(./more/scrollbar.css);
+
 body {
     margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --header--height: 66px;
 }

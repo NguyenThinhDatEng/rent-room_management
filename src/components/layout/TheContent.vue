@@ -14,7 +14,18 @@ export default {
     VTable,
   },
   data() {
-    return {};
+    return {
+      tableHeadData: [
+        {
+          type: "checkbox",
+          width: 40,
+        },
+        {
+          type: "text",
+          content: "",
+        },
+      ],
+    };
   },
 };
 </script>
@@ -25,6 +36,7 @@ export default {
   flex-direction: column;
   flex: 8.5;
   background-color: palegreen;
+  height: fit-content;
 
   h1 {
     width: max-content;

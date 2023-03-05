@@ -17,12 +17,6 @@
         <v-table-row />
         <v-table-row />
         <v-table-row />
-        <v-table-row />
-        <v-table-row />
-        <v-table-row />
-        <v-table-row />
-        <v-table-row />
-        <v-table-row />
       </tbody>
       <tfoot></tfoot>
     </table>
@@ -38,7 +32,14 @@ export default {
   name: "TableVue",
   components: { VTableHead, VTableRow },
   created() {},
-  props: {},
+  props: {
+    tableHeadData: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+    },
+  },
   emits: [],
   methods: {},
   data() {
@@ -53,10 +54,10 @@ $table__border--color: #afafaf;
 .table {
   background-color: #fff;
   margin-bottom: 0;
-  height: calc(100vh - 130px);
   overflow: auto;
   border: 1px solid $table__border--color;
   border-radius: 8px;
+  height: calc(100vh - 145px);
 
   table {
     width: 100%;
@@ -65,15 +66,7 @@ $table__border--color: #afafaf;
     thead {
       position: sticky;
       top: 0;
-      background-color: #fff;
-
-      //   &:before {
-      //     content: "";
-      //   }
-
-      //   &:after {
-      //     content: "";
-      //   }
+      height: 40px;
     }
   }
 }

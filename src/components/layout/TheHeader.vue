@@ -1,9 +1,9 @@
 <template>
   <div id="theHeader">
     <div class="header">
-      <div class="header__left mr-auto">
+      <div class="header__left">
         <img src="@/assets/images/common/room-icon.png" />
-        <p class="ml-2">Phòng trọ của tôi</p>
+        <p style="margin-left: 24px">Phòng trọ của tôi</p>
       </div>
       <div class="header__right">
         <input
@@ -45,6 +45,7 @@ $input__border--hover: #81ecec;
     .header__left {
       display: flex;
       align-items: center;
+      margin-right: auto;
 
       img {
         max-width: 50px;
@@ -65,7 +66,8 @@ $input__border--hover: #81ecec;
         border: 1px solid #afafaf;
         border-radius: 4px;
         outline: none;
-        width: 80px;
+        width: 60px;
+        height: 36px;
 
         &:hover {
           border-color: $input__border--hover;

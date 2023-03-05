@@ -1,8 +1,15 @@
 <template>
   <div class="table">
     <table>
-      <v-table-head />
+      <thead>
+        <v-th
+          v-for="config in tableHeadData"
+          :key="config.col"
+          :config="config"
+        />
+      </thead>
       <tbody>
+        <v-table-row />
         <v-table-row />
         <v-table-row />
         <v-table-row />
@@ -25,12 +32,12 @@
 
 <script>
 // components
-import VTableHead from "./VHead.vue";
+import VTh from "./VTh.vue";
 import VTableRow from "./VRow.vue";
 
 export default {
   name: "TableVue",
-  components: { VTableHead, VTableRow },
+  components: { VTh, VTableRow },
   created() {},
   props: {
     tableHeadData: {
@@ -67,6 +74,7 @@ $table__border--color: #afafaf;
       position: sticky;
       top: 0;
       height: 40px;
+      background-color: #fff;
     }
   }
 }

@@ -1,19 +1,15 @@
 <template>
   <tr>
-    <v-data></v-data>
-    <v-data></v-data>
-    <v-data></v-data>
-    <v-data></v-data>
-    <v-data></v-data>
+    <v-td></v-td>
   </tr>
 </template>
 
 <script>
-import VData from "./VData.vue";
+import VTd from "./VTd.vue";
 
 export default {
   name: "TableRow",
-  components: { VData },
+  components: { VTd },
   created() {},
   props: {},
   emits: [],

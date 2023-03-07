@@ -6,7 +6,12 @@
   <td v-else-if="config.type == dataType.text">{{ content }}</td>
   <td
     v-else-if="config.type == dataType._function"
-    style="display: flex; justify-content: space-evenly"
+    style="
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+    "
   >
     <img src="@/assets/images/common/delete.png" />
     <img src="@/assets/images/common/edit.png" />

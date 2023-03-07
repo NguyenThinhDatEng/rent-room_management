@@ -138,17 +138,20 @@ $row--hover: #d1edf4;
   table {
     width: 100%;
     height: 500px;
+    border-collapse: collapse;
 
     thead {
       position: sticky;
       top: 0;
       height: 40px;
-      background-color: #fff;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #afafaf;
     }
 
     tbody {
       tr {
-        height: 36px;
+        height: 40px;
+        border-bottom: 0.5px solid #afafaf;
 
         &:hover,
         &:focus {

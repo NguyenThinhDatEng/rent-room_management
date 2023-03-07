@@ -1,19 +1,29 @@
 <template>
-  <th v-if="config.content" :style="getStyle(config)">{{ config.content }}</th>
+  <th v-if="config.content" :style="getStyle(config)">
+    {{ config.content }}
+  </th>
   <th v-else :style="getStyle(config)">
-    <input type="checkbox" />
+    <input type="checkbox" v-model="checked" />
   </th>
 </template>
   
   <script>
 export default {
   name: "tableData",
+  emits: ["checkAll"],
   props: {
     config: {
       type: Object,
       default: () => {},
-    },
+    }, // config of th
   },
+
+  watch: {
+    checked: function () {
+      this.$emit("checkAll", this.checked);
+    }, // emit to table when checkbox is clicked
+  },
+
   methods: {
     /**
      * @description convert width in config to width in css
@@ -25,6 +35,11 @@ export default {
       return width + "px";
     },
 
+    /**
+     * @description convert to style in css
+     * @param {object} config includes width, colName, ...
+     * 07/03/2023
+     */
     getStyle: function (config) {
       let tmpArr = [];
       let style = "";
@@ -34,7 +49,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      checked: false, // value of checkbox
+    };
   },
 };
 </script>

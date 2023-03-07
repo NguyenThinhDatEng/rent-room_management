@@ -16,9 +16,7 @@ export default {
       default: () => {},
     },
   },
-  created() {},
-  emits: [],
-  methods: {},
+
   data() {
     return {};
   },

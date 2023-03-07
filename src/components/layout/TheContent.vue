@@ -43,12 +43,12 @@ export default {
         {
           col: resource.spending_list.table_header.numerical_order.en,
           type: myEnum.data_type.number,
-          width: 40,
+          width: 50,
         },
         {
           col: resource.spending_list.table_header.spending_category.en,
           type: myEnum.data_type.text,
-          width: 200,
+          width: 150,
         },
         {
           col: resource.spending_list.table_header.description.en,

@@ -9,7 +9,6 @@
         <v-input
           :type="resource.common.input_type.number"
           :input-width="50"
-          :value="year"
           v-model="year"
         >
           <div class="input__icon">
@@ -55,6 +54,7 @@ export default {
       console.log(this.year);
     }, // năm hiện tại
   },
+  mounted() {},
   methods: {
     /**
      * @description increase current year when click up icon
@@ -77,7 +77,7 @@ export default {
 
   data() {
     return {
-      year: 0,
+      year: 0, // displayed year
       // resources
       Function,
       resource,

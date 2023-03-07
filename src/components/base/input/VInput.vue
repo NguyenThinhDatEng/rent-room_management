@@ -2,25 +2,27 @@
   <div class="input">
     <input
       :type="type"
-      :value="value"
+      :value="modelValue"
       :style="{ width: inputWidth + 'px' }"
-      @input="$emit('update:value', $event.target.value)"
+      @input="$emit('update:modelValue', getValue($event))"
     />
     <slot />
   </div>
 </template>
 
 <script>
+import resource from "@/assets/js/resource";
+
 export default {
   name: "NormalInput",
+  emits: ["update:modelValue"],
   props: {
     type: {
       type: String,
       default: "text",
     }, // Type of input
-    value: {
+    modelValue: {
       type: [String, Number],
-      default: "",
     }, // default value of input
     maxLength: {
       type: [Number, String],
@@ -35,9 +37,30 @@ export default {
       default: 100,
     },
   },
-  emits: ["update:value"],
+
+  methods: {
+    /**
+     * @description Get value following type of input
+     * @param {Vue Event} e
+     * 07/03/2023
+     */
+    getValue(e) {
+      try {
+        if (this.type == this.inputType.number) {
+          return Number(e.target.value);
+        }
+        return e.target.value;
+      } catch (error) {
+        console.log("getValue in VInput:", error);
+      }
+    },
+  },
+
   data() {
-    return {};
+    return {
+      // resources
+      inputType: resource.common.input_type,
+    };
   },
 };
 </script>

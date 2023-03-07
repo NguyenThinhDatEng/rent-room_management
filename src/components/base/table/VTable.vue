@@ -6,10 +6,31 @@
           v-for="config in tableHeadData"
           :key="config.col"
           :config="config"
+          @check-all="checkAll"
         />
       </thead>
       <tbody>
-        <v-table-row v-for="item in tableData" :key="item.col" />
+        <tr>
+          <v-td
+            v-for="config in tableData"
+            :key="config.col"
+            :config="config"
+            :content="'okla'"
+            :checked="isCheckedAll"
+          ></v-td>
+        </tr>
+        <tr>
+          <v-td
+            v-for="config in tableData"
+            :key="config.col"
+            :config="config"
+            :content="'okla'"
+            :checked="isCheckedAll"
+          ></v-td>
+        </tr>
+        <tr class="ignoreRow">
+          <td v-show="false" colspan="100"></td>
+        </tr>
       </tbody>
       <tfoot></tfoot>
     </table>
@@ -19,28 +40,27 @@
 <script>
 // components
 import VTh from "./VTh.vue";
-import VTableRow from "./VRow.vue";
+import VTd from "./VTd.vue";
 // resources
 import resource from "@/assets/js/resource";
 
 export default {
   name: "TableVue",
-  components: { VTh, VTableRow },
+  components: { VTh, VTd },
   props: {
     tableData: {
       type: Array,
       default: () => {
         return [];
-      },
+      }, // configs of data in table
     },
   },
   emits: [],
 
   created() {
     this.initTableHeadData();
-    console.log("1", this.tableData);
-    console.log("2", this.tableHeadData);
   },
+  watch: {},
 
   methods: {
     /**
@@ -82,10 +102,20 @@ export default {
         delete item.type;
       });
     },
+
+    /**
+     * @description update isCheckedAll when click the value of header checkbox is changed
+     * @param {Boolean} checked value of checkbox on table head
+     * 07/03/2023
+     */
+    checkAll: function (checked) {
+      this.isCheckedAll = checked;
+    },
   },
 
   data() {
     return {
+      isCheckedAll: false,
       tableHeadData: [], // Dữ liệu cho phần header
     };
   },
@@ -95,6 +125,7 @@ export default {
 <style scoped lang="scss">
 // variables
 $table__border--color: #afafaf;
+$row--hover: #d1edf4;
 
 .table {
   background-color: #fff;
@@ -113,6 +144,25 @@ $table__border--color: #afafaf;
       top: 0;
       height: 40px;
       background-color: #fff;
+    }
+
+    tbody {
+      tr {
+        height: 36px;
+
+        &:hover,
+        &:focus {
+          background-color: $row--hover;
+        }
+      }
+      .ignoreRow {
+        height: 100%;
+        text-align: center;
+        border: none;
+      }
+      .ignoreRow:hover {
+        background-color: #fff;
+      }
     }
   }
 }

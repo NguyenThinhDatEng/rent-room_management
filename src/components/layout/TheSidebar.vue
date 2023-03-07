@@ -48,12 +48,12 @@ $item__bg: #55efc4;
     cursor: pointer;
 
     .item__icon {
-      max-width: 32px;
-      max-height: 32px;
+      max-width: 28px;
+      max-height: 28px;
     }
 
     p {
-      font-size: 24px;
+      font-size: 20px;
       margin: 0;
     }
 

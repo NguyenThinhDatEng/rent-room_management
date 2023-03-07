@@ -6,36 +6,88 @@
         <p style="margin-left: 24px">Phòng trọ của tôi</p>
       </div>
       <div class="header__right">
-        <input
-          type="number"
-          :value="Function.getCurrentYear()"
-          min-length="4"
-          max-length="4"
-        />
+        <v-input
+          :type="resource.common.input_type.number"
+          :input-width="50"
+          :value="year"
+          v-model="year"
+        >
+          <div class="input__icon">
+            <font-awesome-icon
+              icon="fa-solid fa-chevron-up"
+              fixed-width
+              :title="dictionary.increase.vi"
+              @click="onClickUpIcon()"
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-chevron-down"
+              fixed-width
+              :title="dictionary.decrease.vi"
+              @click="onClickDownIcon()"
+            />
+          </div>
+        </v-input>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// resources
 import Function from "@/assets/js/common/func.js";
+import resource from "@/assets/js/resource";
+import dictionary from "@/assets/js/resource/dictionary";
+// components
+import VInput from "../base/input/VInput.vue";
 
 export default {
   name: "TheHeader",
-  created() {},
-  components: {},
+  components: { VInput },
   props: {},
   emits: [],
-  methods: {},
+
+  created() {
+    // init year
+    this.year = Function.getCurrentYear();
+  },
+  watch: {
+    year: function () {
+      console.log(this.year);
+    }, // năm hiện tại
+  },
+  methods: {
+    /**
+     * @description increase current year when click up icon
+     * @author NVThinh
+     * 06/03/2023
+     */
+    onClickUpIcon: function () {
+      this.year += 1;
+    },
+
+    /**
+     * @description decrease current year when click down icon
+     * @author NVThinh
+     * 06/03/2023
+     */
+    onClickDownIcon: function () {
+      this.year -= 1;
+    },
+  },
+
   data() {
-    return { Function };
+    return {
+      year: 0,
+      // resources
+      Function,
+      resource,
+      dictionary,
+    };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-$input__border--hover: #81ecec;
-
 #theHeader {
   .header {
     display: flex;
@@ -61,16 +113,14 @@ $input__border--hover: #81ecec;
       display: flex;
       align-items: center;
 
-      input {
-        padding-left: 8px;
-        border: 1px solid #afafaf;
-        border-radius: 4px;
-        outline: none;
-        width: 60px;
-        height: 36px;
+      .input__icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        font-size: 13px;
 
-        &:hover {
-          border-color: $input__border--hover;
+        svg {
+          cursor: pointer;
         }
       }
     }

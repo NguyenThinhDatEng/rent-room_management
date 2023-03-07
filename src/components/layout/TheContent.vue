@@ -8,7 +8,7 @@
         <v-button content="Thêm mới chi phí" />
       </div>
     </div>
-    <v-table :tableHeadData="tableHeadData"></v-table>
+    <v-table :tableData="tableData"></v-table>
   </div>
 </template>
 
@@ -28,28 +28,12 @@ export default {
     VButton,
   },
 
-  created() {
-    this.initTableData();
-  },
-
-  methods: {
-    /**
-     * @description initialize data for columns in table
-     * @author NVThinh
-     * 05/03/2023
-     */
-    initTableData: function () {
-      // init content for each object in tableHeadData
-      const headerContent = resource.spending_list.table_header;
-      this.tableHeadData.forEach((item) => {
-        item.content = headerContent[item.col]?.vi;
-      });
-    },
-  },
+  created() {},
 
   data() {
     return {
-      tableHeadData: [
+      // resource
+      tableData: [
         {
           col: "checkbox",
           type: myEnum.data_type._checkbox,
@@ -97,7 +81,7 @@ export default {
         },
         {
           col: resource.spending_list.table_header.feature.en,
-          type: myEnum.data_type._functions,
+          type: myEnum.data_type._function,
           width: 100,
         },
       ],

@@ -1,6 +1,12 @@
 import myDictionary from "./dictionary";
 
 export default {
+  common: {
+    input_type: {
+      number: "number",
+      text: "text",
+    },
+  },
   spending_list: {
     table_header: {
       numerical_order: {

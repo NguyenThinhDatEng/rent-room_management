@@ -7,7 +7,7 @@
   
   <script>
 export default {
-  name: "TableHeadData",
+  name: "tableData",
   props: {
     config: {
       type: Object,
@@ -30,7 +30,6 @@ export default {
       let style = "";
       if (config.width) tmpArr.push("width: " + this.getWidth(config.width));
       style = tmpArr.join(";");
-      console.log(style);
       return style;
     },
   },

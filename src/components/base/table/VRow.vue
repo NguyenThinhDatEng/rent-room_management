@@ -10,8 +10,13 @@ import VTd from "./VTd.vue";
 export default {
   name: "TableRow",
   components: { VTd },
+  props: {
+    config: {
+      type: Object,
+      default: () => {},
+    },
+  },
   created() {},
-  props: {},
   emits: [],
   methods: {},
   data() {

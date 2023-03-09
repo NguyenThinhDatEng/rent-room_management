@@ -3,7 +3,7 @@
     <div class="header">
       <div class="header__left">
         <img src="@/assets/images/common/room-icon.png" />
-        <p style="margin-left: 24px">Phòng trọ của tôi</p>
+        <p style="margin-left: 16px">Phòng trọ của tôi</p>
       </div>
       <div class="header__right">
         <v-input
@@ -33,7 +33,7 @@
 
 <script>
 // resources
-import Function from "@/assets/js/common/func.js";
+import Function from "@/assets/js/common/function";
 import resource from "@/assets/js/resource";
 import dictionary from "@/assets/js/resource/dictionary";
 // components

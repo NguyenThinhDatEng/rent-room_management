@@ -1,7 +1,15 @@
 export default {
+  edit: {
+    vi: "Sửa",
+    en: "edit",
+  },
   decrease: {
     vi: "Giảm",
     en: "decrease",
+  },
+  delete: {
+    vi: "Xóa",
+    en: "delete",
   },
   description: {
     vi: "Mô tả",

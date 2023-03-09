@@ -30,7 +30,7 @@ export default {
         en: "spending_date",
       },
       payer: {
-        vi: myDictionary.payer.vi,
+        vi: "Người chi",
         en: myDictionary.payer.en,
       },
       location: {

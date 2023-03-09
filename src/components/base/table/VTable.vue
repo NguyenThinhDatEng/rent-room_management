@@ -10,21 +10,12 @@
         />
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="(item, index) of tableData" :key="index">
           <v-td
-            v-for="config in tableData"
+            v-for="config in tableConfig"
             :key="config.col"
             :config="config"
-            :content="'okla'"
-            :checked="isCheckedAll"
-          ></v-td>
-        </tr>
-        <tr>
-          <v-td
-            v-for="config in tableData"
-            :key="config.col"
-            :config="config"
-            :content="'okla'"
+            :content="item[config.col] || index + 1"
             :checked="isCheckedAll"
           ></v-td>
         </tr>
@@ -32,7 +23,7 @@
           <td v-show="false" colspan="100"></td>
         </tr>
       </tbody>
-      <tfoot></tfoot>
+      <v-foot :noOfColspan="4" :no-of-records="tableData.length" />
     </table>
   </div>
 </template>
@@ -41,24 +32,30 @@
 // components
 import VTh from "./VTh.vue";
 import VTd from "./VTd.vue";
+import VFoot from "./VFoot.vue";
 // resources
 import resource from "@/assets/js/resource";
+import myEnum from "@/assets/js/enum";
 
 export default {
   name: "TableVue",
-  components: { VTh, VTd },
+  components: { VTh, VTd, VFoot },
   props: {
+    tableConfig: {
+      type: Array,
+      required: true,
+    }, // configs for table
     tableData: {
       type: Array,
-      default: () => {
-        return [];
-      }, // configs of data in table
-    },
+      required: true,
+    }, // data of table
   },
   emits: [],
 
   created() {
     this.initTableHeadData();
+    this.initTableFootData();
+    console.log(this.tableData);
   },
   watch: {},
 
@@ -72,7 +69,7 @@ export default {
       let me = this;
       // init content for each object in tableData
       const contents = resource.spending_list.table_header;
-      this.tableData.forEach((item) => {
+      this.tableConfig.forEach((item) => {
         // init tableHeadData
         me.tableHeadData.push({ ...item });
       });
@@ -84,23 +81,25 @@ export default {
     },
 
     /**
-     * @description initialize data for columns in table
-     * @author NVThinh
-     * 06/03/2023
+     * @description initialize data for table foot
+     * @author NVThinh 06/03/2023
      */
-    initTableBodyData: function () {
+    initTableFootData: function () {
       let me = this;
-      // init content for each object in tableData
-      const contents = resource.spending_list.table_header;
-      this.tableData.forEach((item) => {
-        // init tableHeadData
-        me.tableHeadData.push({ ...item });
+      // console.log(me.tableConfig);
+      console.log(me.tableData);
+      const tmpConfigs = me.tableConfig.filter((item) => {
+        return item.type === me.dataType.money;
       });
-      this.tableHeadData.forEach((item) => {
-        // add content
-        item.content = contents[item.col]?.vi;
-        delete item.type;
+      tmpConfigs.forEach((item) => {
+        console.log(item);
+        // console.log(me.tableData);
+        item.value = me.tableData.reduce(function (acc, obj) {
+          console.log(obj);
+          return acc + obj[item.col];
+        }, 0);
       });
+      // console.log(tmpConfigs);
     },
 
     /**
@@ -117,6 +116,9 @@ export default {
     return {
       isCheckedAll: false,
       tableHeadData: [], // Dữ liệu cho phần header
+      tableFootData: [], // Data for table foot
+      // resources
+      dataType: myEnum.data_type,
     };
   },
 };

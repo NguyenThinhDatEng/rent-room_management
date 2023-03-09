@@ -8,4 +8,10 @@ export default {
     _function: 5,
     _icon: 6,
   },
+
+  table: {
+    foot_type: {
+      onlySum: 0,
+    },
+  },
 };

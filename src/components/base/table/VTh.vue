@@ -1,13 +1,16 @@
 <template>
-  <th v-if="config.content" :style="getStyle(config)">
+  <th v-if="config.content" :style="appFunc.getStyle(config)">
     {{ config.content }}
   </th>
-  <th v-else :style="getStyle(config)">
+  <th v-else :style="appFunc.getStyle(config)">
     <input type="checkbox" v-model="checked" />
   </th>
 </template>
   
   <script>
+// resources
+import appFunc from "@/assets/js/common/function/app.js";
+
 export default {
   name: "tableData",
   emits: ["checkAll"],
@@ -24,33 +27,12 @@ export default {
     }, // emit to table when checkbox is clicked
   },
 
-  methods: {
-    /**
-     * @description convert width in config to width in css
-     * @param {Number} width
-     * @author NVThinh
-     * 05/03/2023
-     */
-    getWidth: function (width) {
-      return width + "px";
-    },
-
-    /**
-     * @description convert to style in css
-     * @param {object} config includes width, colName, ...
-     * 07/03/2023
-     */
-    getStyle: function (config) {
-      let tmpArr = [];
-      let style = "";
-      if (config.width) tmpArr.push("width: " + this.getWidth(config.width));
-      style = tmpArr.join(";");
-      return style;
-    },
-  },
+  methods: {},
   data() {
     return {
       checked: false, // value of checkbox
+      // resources
+      appFunc,
     };
   },
 };

@@ -8,7 +8,7 @@
         <v-button content="Thêm mới chi phí" />
       </div>
     </div>
-    <v-table :tableData="tableData"></v-table>
+    <v-table :tableConfig="tableConfig" :tableData="tableData"></v-table>
   </div>
 </template>
 
@@ -20,6 +20,8 @@ import VButton from "../base/button/VButton.vue";
 import resource from "@/assets/js/resource";
 import myEnum from "@/assets/js/enum";
 import dictionary from "@/assets/js/resource/dictionary";
+// apis
+import { getAllExpense } from "@/apis/expenses";
 
 export default {
   name: "TheContent",
@@ -28,12 +30,20 @@ export default {
     VButton,
   },
 
-  created() {},
+  async created() {
+    // call api to get data for table
+    await getAllExpense().then((res) => {
+      if (res && res.data) {
+        this.tableData = res.data;
+      }
+    });
+  },
 
   data() {
     return {
+      tableData: [],
       // resource
-      tableData: [
+      tableConfig: [
         {
           col: "checkbox",
           type: myEnum.data_type._checkbox,
@@ -49,10 +59,13 @@ export default {
           col: resource.spending_list.table_header.spending_category.en,
           type: myEnum.data_type.text,
           width: 150,
+          textAlign: "left",
+          padding: "0 0 0 8px",
         },
         {
           col: resource.spending_list.table_header.description.en,
           type: myEnum.data_type.text,
+          textAlign: "left",
         },
         {
           col: resource.spending_list.table_header.amount.en,
@@ -60,24 +73,24 @@ export default {
           width: 200,
         },
         {
-          col: resource.spending_list.table_header.spending_date.en,
-          type: myEnum.data_type.date,
-          width: 100,
-        },
-        {
           col: resource.spending_list.table_header.payer.en,
           type: myEnum.data_type.text,
           width: 100,
         },
         {
+          col: resource.spending_list.table_header.spending_date.en,
+          type: myEnum.data_type.date,
+          width: 100,
+        },
+        {
           col: resource.spending_list.table_header.location.en,
           type: myEnum.data_type.text,
-          width: 200,
+          width: 150,
         },
         {
           col: resource.spending_list.table_header.images.en,
           type: myEnum.data_type._icon,
-          width: 72,
+          width: 108,
         },
         {
           col: resource.spending_list.table_header.feature.en,

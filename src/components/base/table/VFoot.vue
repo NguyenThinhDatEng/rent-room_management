@@ -4,7 +4,13 @@
       <td :colspan="noOfColspan">
         <div class="totalOfRows">Tổng số bản ghi: {{ noOfRecords }}</div>
       </td>
-      <v-td :config="tmpConfig" :content="200000" />
+      <v-td
+        v-for="config in configs"
+        :key="config"
+        :config="config"
+        :content="config.value"
+      />
+      <td v-if="configs.length === 0">0</td>
       <td :colspan="100" />
     </tr>
   </tfoot>
@@ -28,6 +34,10 @@ export default {
       type: Number,
       default: 0,
     }, // number of records
+    configs: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   created() {

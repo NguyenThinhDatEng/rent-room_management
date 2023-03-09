@@ -23,7 +23,11 @@
           <td v-show="false" colspan="100"></td>
         </tr>
       </tbody>
-      <v-foot :noOfColspan="4" :no-of-records="tableData.length" />
+      <v-foot
+        :noOfColspan="4"
+        :no-of-records="tableData.length"
+        :configs="tFootConfigs"
+      />
     </table>
   </div>
 </template>
@@ -48,16 +52,21 @@ export default {
     tableData: {
       type: Array,
       required: true,
+      default: () => [],
     }, // data of table
   },
   emits: [],
 
   created() {
     this.initTableHeadData();
-    this.initTableFootData();
-    console.log(this.tableData);
   },
-  watch: {},
+  watch: {
+    tableData: function () {
+      this.initTableFootData();
+    },
+  },
+
+  mounted() {},
 
   methods: {
     /**
@@ -86,20 +95,14 @@ export default {
      */
     initTableFootData: function () {
       let me = this;
-      // console.log(me.tableConfig);
-      console.log(me.tableData);
-      const tmpConfigs = me.tableConfig.filter((item) => {
+      me.tFootConfigs = me.tableConfig.filter((item) => {
         return item.type === me.dataType.money;
       });
-      tmpConfigs.forEach((item) => {
-        console.log(item);
-        // console.log(me.tableData);
-        item.value = me.tableData.reduce(function (acc, obj) {
-          console.log(obj);
+      me.tFootConfigs.forEach((item) => {
+        item.value = me.tableData.reduce((acc, obj) => {
           return acc + obj[item.col];
         }, 0);
       });
-      // console.log(tmpConfigs);
     },
 
     /**
@@ -115,8 +118,8 @@ export default {
   data() {
     return {
       isCheckedAll: false,
+      tFootConfigs: [], // Config for table foot
       tableHeadData: [], // Dữ liệu cho phần header
-      tableFootData: [], // Data for table foot
       // resources
       dataType: myEnum.data_type,
     };

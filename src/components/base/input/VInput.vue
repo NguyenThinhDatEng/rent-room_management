@@ -1,16 +1,20 @@
 <template>
-  <div class="input">
-    <input
-      :type="type"
-      :value="modelValue"
-      :style="{ width: inputWidth + 'px' }"
-      @input="$emit('update:modelValue', getValue($event))"
-    />
-    <slot />
+  <div class="myInput">
+    <label v-show="hasLabel">{{ label }}</label>
+    <div class="input">
+      <input
+        :type="type"
+        :value="modelValue"
+        :style="{ width: getWidth(inputWidth) }"
+        @input="$emit('update:modelValue', getValue($event))"
+      />
+      <slot />
+    </div>
   </div>
 </template>
 
 <script>
+// resources
 import resource from "@/assets/js/resource";
 
 export default {
@@ -33,8 +37,15 @@ export default {
       default: "",
     }, // min length of input
     inputWidth: {
-      type: Number,
+      type: [Number, String],
       default: 100,
+    }, // width of input
+    label: {
+      type: String,
+    }, // label of combobox
+    hasLabel: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -54,6 +65,18 @@ export default {
         console.log("getValue in VInput:", error);
       }
     },
+
+    /**
+     * @description match with for style base on type of width
+     * @param {Number, String} width width of input
+     * @author NVThinh 9/3/2023
+     */
+    getWidth: function (width) {
+      if (typeof width === "number") {
+        return this.inputWidth + "px";
+      }
+      return width;
+    },
   },
 
   data() {
@@ -69,20 +92,30 @@ export default {
 // variables
 $input__border--hover: #81ecec;
 
-.input {
+.myInput {
   display: flex;
-  border: 1px solid #afafaf;
-  border-radius: 4px;
-  padding: 4px 8px;
-  height: 36px;
+  flex-direction: column;
 
-  input {
+  label {
+    text-align: left;
+    margin-bottom: 4px;
+  }
+
+  .input {
+    display: flex;
+    border: 1px solid #afafaf;
     border-radius: 4px;
-    border: none;
-    outline: none;
+    padding: 4px 8px;
+    height: 40px;
 
-    &:hover {
-      border-color: $input__border--hover;
+    input {
+      border-radius: 4px;
+      border: none;
+      outline: none;
+
+      &:hover {
+        border-color: $input__border--hover;
+      }
     }
   }
 }

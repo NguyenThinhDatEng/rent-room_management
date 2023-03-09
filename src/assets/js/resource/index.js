@@ -6,8 +6,20 @@ export default {
       number: "number",
       text: "text",
     },
+    data_type: {
+      number: "number",
+      text: "string",
+      array: "object",
+      object: "object",
+    },
   },
   spending_list: {
+    list: {
+      add: {
+        vi: "Thêm mới chi phí",
+        en: "add",
+      },
+    },
     table_header: {
       numerical_order: {
         vi: "STT",

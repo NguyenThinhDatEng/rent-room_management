@@ -138,7 +138,7 @@ $row--hover: #d1edf4;
   overflow: auto;
   border: 1px solid $table__border--color;
   border-radius: 8px;
-  height: calc(100vh - 145px);
+  flex: 1;
 
   table {
     width: 100%;

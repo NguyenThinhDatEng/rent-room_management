@@ -37,3 +37,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 [Create REST API with JSON Server](https://viblo.asia/p/cach-tao-rest-api-voi-json-server-GrLZDWvOKk0)
 
 [Format money](https://www.freecodecamp.org/news/how-to-format-number-as-currency-in-javascript-one-line-of-code/)
+
+[combobox configs](https://vuetifyjs.com/en/api/v-combobox/#props-autofocus)

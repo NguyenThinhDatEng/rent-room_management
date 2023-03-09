@@ -5,10 +5,11 @@
         <h2>Danh sách chi phí</h2>
       </div>
       <div class="functionBar__right">
-        <v-button content="Thêm mới chi phí" />
+        <v-button content="Thêm mới chi phí" @click="openPopup()" />
       </div>
     </div>
     <v-table :tableConfig="tableConfig" :tableData="tableData"></v-table>
+    <expense-popup :isShow="isShowPopup" />
   </div>
 </template>
 
@@ -16,6 +17,7 @@
 // components
 import VTable from "../base/table/VTable.vue";
 import VButton from "../base/button/VButton.vue";
+import ExpensePopup from "@/views/expense/ExpensePopup.vue";
 // resources
 import resource from "@/assets/js/resource";
 import myEnum from "@/assets/js/enum";
@@ -28,6 +30,8 @@ export default {
   components: {
     VTable,
     VButton,
+    // Views
+    ExpensePopup,
   },
 
   async created() {
@@ -39,8 +43,19 @@ export default {
     });
   },
 
+  methods: {
+    /**
+     * @description show Popup
+     * @author NVThinh 9/3/2023
+     */
+    openPopup: function () {
+      this.isShowPopup = !this.isShowPopup;
+    },
+  },
+
   data() {
     return {
+      isShowPopup: false, // show/hide popup
       tableData: [],
       // resource
       tableConfig: [
@@ -109,12 +124,14 @@ export default {
   flex-direction: column;
   flex: 8.5;
   height: fit-content;
-  padding: 0 8px;
+  padding: 8px;
+  height: calc(100vh - 66px);
 
   .functionBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 8px;
   }
 
   h1,

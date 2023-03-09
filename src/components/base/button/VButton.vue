@@ -1,5 +1,5 @@
 <template>
-  <button :title="content">
+  <button :title="content" :style="{ 'min-width': minWidth + 'px' }">
     {{ content }}
   </button>
 </template>
@@ -11,7 +11,11 @@ export default {
     content: {
       type: String,
       required: true,
-    },
+    }, // the content of button
+    minWidth: {
+      type: Number,
+      default: 80,
+    }, // style min-width for button
   },
   created() {},
   components: {},
@@ -27,6 +31,7 @@ export default {
 $default: #1aa4c8;
 $hover: #0582a2;
 $active: #28b7dc;
+$border: #afafaf;
 
 button {
   background-color: $default;
@@ -38,6 +43,7 @@ button {
   color: #fff;
   height: 36px;
   line-height: 22px;
+  cursor: pointer;
 
   &:hover {
     background-color: $hover;
@@ -45,6 +51,25 @@ button {
 
   &:active {
     background-color: $active;
+  }
+
+  &.button--outline {
+    background-color: #fff;
+    border: 1px solid $border;
+    color: black;
+
+    &:hover {
+      background-color: $default;
+      color: #fff;
+    }
+
+    &:active {
+      background-color: $default;
+    }
+
+    &:focus {
+      background-color: $default;
+    }
   }
 }
 </style>

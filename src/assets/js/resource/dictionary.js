@@ -1,4 +1,12 @@
 export default {
+  cancel: {
+    vi: "Hủy",
+    en: "cancel",
+  },
+  close: {
+    vi: "Đóng",
+    en: "close",
+  },
   edit: {
     vi: "Sửa",
     en: "edit",
@@ -14,6 +22,10 @@ export default {
   description: {
     vi: "Mô tả",
     en: "description",
+  },
+  feature: {
+    vi: "Tính năng",
+    en: "feature",
   },
   increase: {
     vi: "Tăng",
@@ -31,8 +43,8 @@ export default {
     vi: "Người trả tiền",
     en: "payer",
   },
-  feature: {
-    vi: "Tính năng",
-    en: "feature",
+  save: {
+    vi: "Lưu",
+    en: "save",
   },
 };

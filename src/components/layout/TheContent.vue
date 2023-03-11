@@ -30,6 +30,7 @@ export default {
   components: {
     VTable,
     VButton,
+
     // Views
     ExpensePopup,
   },

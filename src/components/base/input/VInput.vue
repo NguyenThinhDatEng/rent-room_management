@@ -1,21 +1,24 @@
 <template>
   <div class="myInput">
     <label v-show="hasLabel">{{ label }}</label>
-    <div class="input">
+    <div v-if="!isTextarea" class="input">
       <input
         :type="type"
         :value="modelValue"
-        :style="{ width: getWidth(inputWidth) }"
+        :style="{ width: getWidth(inputWidth), 'text-align': getTextAlign() }"
         @input="$emit('update:modelValue', getValue($event))"
       />
       <slot />
     </div>
+    <textarea v-else @input="$emit('update:modelValue', getValue($event))" />
   </div>
 </template>
 
 <script>
 // resources
 import resource from "@/assets/js/resource";
+import myEnum from "@/assets/js/enum";
+import myFunc from "@/assets/js/common/function";
 
 export default {
   name: "NormalInput",
@@ -43,24 +46,30 @@ export default {
     label: {
       type: String,
     }, // label of combobox
-    hasLabel: {
+    isTextarea: {
       type: Boolean,
       default: false,
-    },
+    }, // use textarea
+  },
+
+  created() {
+    // update hasLabel
+    this.hasLabel = this.label != "";
   },
 
   methods: {
     /**
      * @description Get value following type of input
-     * @param {Vue Event} e
+     * @param {Event} e
      * 07/03/2023
      */
     getValue(e) {
       try {
-        if (this.type == this.inputType.number) {
-          return Number(e.target.value);
+        const val = e.target.value;
+        if (this.type === this.inputType.number) {
+          return Number(val);
         }
-        return e.target.value;
+        return val;
       } catch (error) {
         console.log("getValue in VInput:", error);
       }
@@ -77,11 +86,25 @@ export default {
       }
       return width;
     },
+
+    /**
+     * @description get text-align for style of input
+     * @author NVThinh 11/03/2023
+     */
+    getTextAlign: function () {
+      if (this.type == this.inputType.number) {
+        return "right";
+      }
+      return "left";
+    },
   },
 
   data() {
     return {
+      hasLabel: false,
       // resources
+      myEnum,
+      myFunc,
       inputType: resource.common.input_type,
     };
   },
@@ -90,11 +113,13 @@ export default {
 
 <style scoped lang="scss">
 // variables
-$input__border--hover: #81ecec;
+$input__border--hover: #1aa4c8;
+$border--default: #afafaf;
 
 .myInput {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   label {
     text-align: left;
@@ -103,7 +128,7 @@ $input__border--hover: #81ecec;
 
   .input {
     display: flex;
-    border: 1px solid #afafaf;
+    border: 1px solid $border--default;
     border-radius: 4px;
     padding: 4px 8px;
     height: 40px;
@@ -111,11 +136,22 @@ $input__border--hover: #81ecec;
     input {
       border-radius: 4px;
       border: none;
-      outline: none;
 
       &:hover {
         border-color: $input__border--hover;
       }
+    }
+  }
+
+  textarea {
+    border-radius: 4px;
+    border: 1px solid $border--default;
+    height: 60px;
+    padding: 4px 8px;
+
+    &:hover,
+    &:focus {
+      border-color: $input__border--hover;
     }
   }
 }

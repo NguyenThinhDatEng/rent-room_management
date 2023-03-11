@@ -1,12 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+
 const app = createApp(App);
 
-// Vuetify
-import "vuetify/styles";
-import { createVuetify } from "vuetify";
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -21,13 +19,8 @@ import {
 /* add icons to the library */
 library.add(faUserSecret, faChevronUp, faChevronDown);
 
-const vuetify = createVuetify({
-  components,
-  directives,
-});
-
 app.component("font-awesome-icon", FontAwesomeIcon);
-app.use(vuetify);
+app.use(ElementPlus);
 
 app.config.productionTip = false;
 

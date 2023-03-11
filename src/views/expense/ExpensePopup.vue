@@ -1,36 +1,56 @@
 <template>
   <v-popup :title="resource.spending_list.list.add.vi" :isShow="isShow">
+    <!-- row 01 -->
     <div class="row">
       <div class="row__left">
-        <v-combobox
-          :label="'Loại chi phí'"
-          :items="['Mua sắm', 'Đóng tiền trọ']"
-          active="true"
+        <v-autocomplete
+          :placeholder="'Chọn loại chi phí'"
+          :label="labels.spending_category.vi"
+          :data="spending_category_list"
         />
       </div>
       <div class="row__right">
-        <v-input
-          :label="'Tổng chi phí'"
-          :has-label="true"
-          :input-width="'100%'"
+        <v-input-money
+          v-model="data.amount"
+          :label="labels.amount.vi"
+          :options="{
+            currency: 'VND',
+            locale: 'de-DE',
+            hideGroupingSeparatorOnFocus: false,
+            hideCurrencySymbolOnFocus: false,
+          }"
         />
       </div>
     </div>
+    <!-- row 02 -->
     <div class="row">
       <div class="row__left">
-        <v-combobox
-          :label="'Loại chi phí'"
-          :items="['Mua sắm', 'Đóng tiền trọ']"
-          active="true"
+        <v-autocomplete
+          :placeholder="'Chọn ' + labels.payer.vi.toLowerCase()"
+          :label="labels.payer.vi"
+          :data="users"
         />
       </div>
       <div class="row__right">
-        <v-input
-          :label="'Tổng chi phí'"
-          :has-label="true"
-          :input-width="'100%'"
-        />
+        <v-date :label="labels.spending_date.vi" placeholder="Chọn ngày" />
       </div>
+    </div>
+    <!-- row 03 -->
+    <div class="row">
+      <v-input
+        v-model="data.location"
+        inputWidth="100%"
+        hasLabel="true"
+        :label="labels.location.vi"
+      />
+    </div>
+    <!-- row 04 -->
+    <div class="row">
+      <v-input :isTextarea="true" :label="labels.description.vi" />
+    </div>
+    <!-- row 5 -->
+    <div class="row">
+      <v-input :label="labels.description.vi" type="file" />
     </div>
   </v-popup>
 </template>
@@ -38,33 +58,53 @@
 <script>
 // components
 import VPopup from "@/components/base/popup/VPopup.vue";
-import VCombobox from "@/components/base/combobox/VCombobox.vue";
+import VInputMoney from "@/components/base/input/VInputMoney.vue";
+import VDate from "@/components/base/datepicker/VDate.vue";
 import VInput from "@/components/base/input/VInput.vue";
+import VAutocomplete from "@/components/base/autocomplete/VAutocomplete.vue";
 // resources
 import resource from "@/assets/js/resource";
+import myEnum from "@/assets/js/enum";
 
 export default {
   name: "ExpensePopup",
-  components: { VPopup, VCombobox, VInput },
+  components: { VPopup, VAutocomplete, VInputMoney, VDate, VInput },
   props: {
     isShow: {
       type: Boolean,
       required: true,
     },
   },
-  created() {},
   emits: [],
+  created() {},
+
   methods: {},
   data() {
     return {
+      data: {
+        amount: 0,
+        spending_date: new Date(),
+        location: "",
+      },
+      users: [{ value: "Thịnh" }, { value: "Quân" }, { value: "Long" }],
+      spending_category_list: [
+        { value: "Mua sắm" },
+        { value: "Đóng tiền nhà" },
+        { value: "Sửa đồ đạc" },
+      ],
       // resources
+      myEnum,
       resource,
+      labels: resource.spending_list.table_header,
+      inputType: resource.common.input_type,
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
+$padding-left-right: 8px;
+
 .row {
   display: flex;
 
@@ -72,7 +112,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding-right: 4px;
+    padding-right: $padding-left-right;
 
     label {
       text-align: left;
@@ -81,7 +121,7 @@ export default {
 
   .row__right {
     flex: 1;
-    padding-left: 4px;
+    padding-left: $padding-left-right;
   }
 
   & + .row {

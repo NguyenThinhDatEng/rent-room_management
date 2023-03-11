@@ -1,0 +1,31 @@
+@import url(./font.scss);
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+
+
+    input {
+        outline: none;
+    }
+    
+    .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+

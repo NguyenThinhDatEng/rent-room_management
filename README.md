@@ -38,4 +38,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [Format money](https://www.freecodecamp.org/news/how-to-format-number-as-currency-in-javascript-one-line-of-code/)
 
-[combobox configs](https://vuetifyjs.com/en/api/v-combobox/#props-autofocus)
+[element plus guide](https://element-plus.org/en-US/guide/quickstart.html#global-configuration)
+
+[Roboto fonts](https://fonts.google.com/specimen/Roboto?preview.text=vue&preview.text_type=custom&subset=vietnamese&noto.script=Latn)
+
+[input type in HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)
+
+[Input money](https://dm4t2.github.io/vue-currency-input/guide.html)

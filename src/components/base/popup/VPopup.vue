@@ -72,7 +72,6 @@ export default {
 
   watch: {
     isShow: function () {
-      console.log(this.isShow);
       this.isOpen = true;
     },
   },
@@ -145,7 +144,7 @@ export default {
     flex-direction: column;
     border-radius: 4px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-    width: 864px;
+    width: 700px;
     background-color: #fff;
 
     .popup__header {

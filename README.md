@@ -45,3 +45,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 [input type in HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)
 
 [Input money](https://dm4t2.github.io/vue-currency-input/guide.html)
+
+### Database
+
+[MySQL database account](https://www.freesqldatabase.com/account/)
+
+[phpAdmin management](https://www.phpmyadmin.co/)
+
+[Hosting](https://somee.com/)

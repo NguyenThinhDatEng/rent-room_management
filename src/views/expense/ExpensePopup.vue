@@ -10,6 +10,16 @@
         />
       </div>
       <div class="row__right">
+        <v-autocomplete
+          :placeholder="'Chọn ' + labels.payer.vi.toLowerCase()"
+          :label="labels.payer.vi"
+          :data="users"
+        />
+      </div>
+    </div>
+    <!-- row 02 -->
+    <div class="row">
+      <div class="row__left">
         <v-input-money
           v-model="data.amount"
           :label="labels.amount.vi"
@@ -19,16 +29,6 @@
             hideGroupingSeparatorOnFocus: false,
             hideCurrencySymbolOnFocus: false,
           }"
-        />
-      </div>
-    </div>
-    <!-- row 02 -->
-    <div class="row">
-      <div class="row__left">
-        <v-autocomplete
-          :placeholder="'Chọn ' + labels.payer.vi.toLowerCase()"
-          :label="labels.payer.vi"
-          :data="users"
         />
       </div>
       <div class="row__right">
@@ -49,9 +49,6 @@
       <v-input :isTextarea="true" :label="labels.description.vi" />
     </div>
     <!-- row 5 -->
-    <div class="row">
-      <v-input :label="labels.description.vi" type="file" />
-    </div>
   </v-popup>
 </template>
 

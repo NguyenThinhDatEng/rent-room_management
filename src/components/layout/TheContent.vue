@@ -120,6 +120,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$func-bar--mb: 16px;
+
 .content {
   display: flex;
   flex-direction: column;
@@ -132,7 +134,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: $func-bar--mb;
   }
 
   h1,

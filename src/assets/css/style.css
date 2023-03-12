@@ -22,6 +22,10 @@ textarea {
     outline: none;
 }
 
+h2 {
+    margin: 0;
+}
+
 .ellipsis {
     white-space: nowrap;
     overflow: hidden;

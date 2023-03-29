@@ -1,12 +1,14 @@
-const express = require("express");
+// import packages
+import express from "express";
 require("dotenv").config();
-// import express from "express";
+import initRoutes from "./route/webAPI";
+
+// create App
 const app = express();
 const port = process.env.PORT;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// init routes for web api
+initRoutes(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

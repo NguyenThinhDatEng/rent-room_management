@@ -52,4 +52,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [phpAdmin management](https://www.phpmyadmin.co/)
 
+[DB Host: localhost](https://www.000webhost.com/members/website/rent-house-managent/database)
+
 [Hosting](https://somee.com/)

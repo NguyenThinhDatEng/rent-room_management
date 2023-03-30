@@ -21,7 +21,7 @@
   "homepage": "https://github.com/NguyenThinhDatEng/rent-room_management#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node src/app.js"
+    "start": "node --exec babel-node src/app.js"
   },
   "author": "",
   "license": "ISC",

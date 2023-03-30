@@ -1,7 +1,8 @@
 // import packages
 import express from "express";
 require("dotenv").config();
-import initRoutes from "./src/route/webAPI";
+import initRoutes from "./src/routes/webAPI";
+import connection from "./src/services/connectDB";
 
 // create App
 const app = express();

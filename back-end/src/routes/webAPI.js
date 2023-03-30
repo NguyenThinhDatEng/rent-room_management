@@ -4,7 +4,7 @@ import { getAll } from "../controller/spendingListController";
 var router = express.Router();
 
 const initRoutes = (app) => {
-  router.get("/", getAll); // Don't use () => Các biến truyền vào của hàm sẽ tự động gửi xuống cho hàm con
+  router.get("/api/v1/", getAll); // Don't use () => Các biến truyền vào của hàm sẽ tự động gửi xuống cho hàm con
 
   router.get("/abc", (req, res) => {
     console.log("Hello");

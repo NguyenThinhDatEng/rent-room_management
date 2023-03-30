@@ -46,12 +46,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [Input money](https://dm4t2.github.io/vue-currency-input/guide.html)
 
-### Database
+# Database
 
-[MySQL database account](https://www.freesqldatabase.com/account/)
+[MySQL database information](https://console.clever-cloud.com/users/me/addons/addon_d2cbfe08-912d-45d4-810c-33da72a06029/informations)
 
-[phpAdmin management](https://www.phpmyadmin.co/)
-
-[DB Host: localhost](https://www.000webhost.com/members/website/rent-house-managent/database)
-
-[Hosting](https://somee.com/)
+[Production](https://rent-room-management-fqce.vercel.app/)

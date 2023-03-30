@@ -1,7 +1,7 @@
 {
   "name": "rent-room_management",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NguyenThinhDatEng/rent-room_management.git"
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/NguyenThinhDatEng/rent-room_management#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --exec babel-node src/app.js"
+    "start": "nodemon --exec babel-node index.js"
   },
   "author": "",
   "license": "ISC",

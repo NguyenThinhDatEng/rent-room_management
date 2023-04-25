@@ -5,7 +5,7 @@
       <div class="popup__header">
         <span>{{ title }}</span>
         <img
-          src="@/assets/images/common/close-24px.png"
+          src="@/assets/icons/close-24px.png"
           :title="dictionary.close.vi"
           @click="close()"
         />
@@ -84,8 +84,6 @@ export default {
      * @author NVThinh 5/1/2023
      */
     close: function () {
-      // this.$emit("close-popup");
-      console.log("close");
       this.isOpen = false;
     },
 

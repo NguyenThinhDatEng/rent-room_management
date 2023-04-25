@@ -2,12 +2,13 @@
   <div id="theHeader">
     <div class="header">
       <div class="header__left">
-        <img src="@/assets/images/common/room-icon.png" />
+        <img src="@/assets/icons/room-icon.png" />
         <p style="margin-left: 16px">Phòng trọ của tôi</p>
       </div>
       <div class="header__right">
         <v-input
           :type="resource.common.input_type.number"
+          :hasBorder="true"
           :input-width="50"
           v-model="year"
         >
@@ -50,9 +51,9 @@ export default {
     this.year = Function.getCurrentYear();
   },
   watch: {
-    year: function () {
-      console.log(this.year);
-    }, // năm hiện tại
+    // year: function () {
+    //   console.log(this.year);
+    // }, // năm hiện tại
   },
   mounted() {},
   methods: {

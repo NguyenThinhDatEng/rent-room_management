@@ -1,5 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import router from "./routes";
+// components
+import VToast from "@/components/base/toast/VToast.vue";
 
 const app = createApp(App);
 
@@ -20,8 +23,12 @@ import {
 library.add(faUserSecret, faChevronUp, faChevronDown);
 
 app.component("font-awesome-icon", FontAwesomeIcon);
+app.component("v-toast", VToast);
 app.use(ElementPlus);
 
 app.config.productionTip = false;
+
+// Use vue-router
+app.use(router);
 
 app.mount("#app");

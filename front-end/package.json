@@ -19,7 +19,8 @@
     "json-server": "^0.17.2",
     "moment": "^2.29.4",
     "vue": "^3.2.13",
-    "vue-currency-input": "^3.0.3"
+    "vue-currency-input": "^3.0.3",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

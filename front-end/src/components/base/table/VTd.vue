@@ -29,11 +29,8 @@
       height: 100%;
     "
   >
-    <img
-      src="@/assets/images/common/delete.png"
-      :title="dictionary.delete.vi"
-    />
-    <img src="@/assets/images/common/edit.png" :title="dictionary.edit.vi" />
+    <img src="@/assets/icons/delete.png" :title="dictionary.delete.vi" />
+    <img src="@/assets/icons/edit.png" :title="dictionary.edit.vi" />
   </td>
 
   <td v-else>

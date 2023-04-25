@@ -13,7 +13,7 @@ export default {
       object: "object",
     },
   },
-  spending_list: {
+  expense_list: {
     list: {
       add: {
         vi: "Thêm mới chi phí",
@@ -25,33 +25,33 @@ export default {
         vi: "STT",
         en: "numerical_order",
       },
-      spending_category: {
+      expense_category_name: {
         vi: "Loại chi phí",
-        en: "spending_category",
+        en: "expense_category_name",
       },
       description: {
         vi: myDictionary.description.vi,
         en: myDictionary.description.en,
       },
-      amount: {
+      cost: {
         vi: "Tổng chi phí",
-        en: "amount",
+        en: "cost",
       },
-      spending_date: {
+      expense_date: {
         vi: "Ngày chi",
-        en: "spending_date",
+        en: "expense_date",
       },
       payer: {
         vi: "Người chi",
         en: myDictionary.payer.en,
       },
-      location: {
+      expense_location: {
         vi: myDictionary.location.vi,
-        en: myDictionary.location.en,
+        en: "expense_location",
       },
-      images: {
+      attach_images: {
         vi: "Ảnh đính kèm",
-        en: "images",
+        en: "attach_images",
       },
       feature: {
         vi: myDictionary.feature.vi,

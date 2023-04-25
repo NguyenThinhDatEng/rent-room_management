@@ -21,6 +21,10 @@ export default {
     }, // config of th
   },
 
+  created() {
+    // console.log(this.config);
+  },
+
   watch: {
     checked: function () {
       this.$emit("checkAll", this.checked);
@@ -28,6 +32,7 @@ export default {
   },
 
   methods: {},
+
   data() {
     return {
       checked: false, // value of checkbox

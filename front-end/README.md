@@ -51,3 +51,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 [MySQL database information](https://console.clever-cloud.com/users/me/addons/addon_d2cbfe08-912d-45d4-810c-33da72a06029/informations)
 
 [Production](https://rent-room-management-fqce.vercel.app/)
+
+[Server](https://rent-room-management-w4p3.vercel.app/)

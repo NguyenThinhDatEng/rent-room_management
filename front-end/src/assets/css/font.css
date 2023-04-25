@@ -22,3 +22,13 @@
     font-family: T Regular;
     src: url(../fonts/Roboto/Roboto-Regular.ttf);
 }
+
+@font-face {
+    font-family: P Regular;
+    src: url(../fonts/Pacifico/Pacifico-Regular.ttf);
+}
+
+@font-face {
+    font-family: Po Regular;
+    src: url(../fonts/Poppins/Poppins-Regular.ttf);
+}

@@ -1,12 +1,12 @@
 <template>
-  <v-popup :title="resource.spending_list.list.add.vi" :isShow="isShow">
+  <v-popup :title="resource.expense_list.list.add.vi" :isShow="isShow">
     <!-- row 01 -->
     <div class="row">
       <div class="row__left">
         <v-autocomplete
           :placeholder="'Chọn loại chi phí'"
-          :label="labels.spending_category.vi"
-          :data="spending_category_list"
+          :label="labels.expense_category_name.vi"
+          :data="expenseCategoryList"
         />
       </div>
       <div class="row__right">
@@ -21,8 +21,8 @@
     <div class="row">
       <div class="row__left">
         <v-input-money
-          v-model="data.amount"
-          :label="labels.amount.vi"
+          v-model="data.cost"
+          :label="labels.cost.vi"
           :options="{
             currency: 'VND',
             locale: 'de-DE',
@@ -32,7 +32,7 @@
         />
       </div>
       <div class="row__right">
-        <v-date :label="labels.spending_date.vi" placeholder="Chọn ngày" />
+        <v-date :label="labels.expense_date.vi" placeholder="Chọn ngày" />
       </div>
     </div>
     <!-- row 03 -->
@@ -41,7 +41,7 @@
         v-model="data.location"
         inputWidth="100%"
         hasLabel="true"
-        :label="labels.location.vi"
+        :label="labels.expense_location.vi"
       />
     </div>
     <!-- row 04 -->
@@ -62,6 +62,8 @@ import VAutocomplete from "@/components/base/autocomplete/VAutocomplete.vue";
 // resources
 import resource from "@/assets/js/resource";
 import myEnum from "@/assets/js/enum";
+// apis
+import { getAllExpenseCategories } from "@/apis/expenses/expenseCategory";
 
 export default {
   name: "ExpensePopup",
@@ -73,26 +75,36 @@ export default {
     },
   },
   emits: [],
-  created() {},
+  // Functions
+  created() {
+    getAllExpenseCategories()
+      .then((res) => {
+        if (res && res.data) {
+          res.data.forEach((element) => {
+            this.expenseCategoryList.push({
+              value: element.expense_category_name,
+              expense_category_id: element.expense_category_id,
+            });
+          });
+        }
+      })
+      .catch((e) => console.log(e));
+  },
 
   methods: {},
   data() {
     return {
       data: {
         amount: 0,
-        spending_date: new Date(),
+        expense_date: new Date(),
         location: "",
       },
       users: [{ value: "Thịnh" }, { value: "Quân" }, { value: "Long" }],
-      spending_category_list: [
-        { value: "Mua sắm" },
-        { value: "Đóng tiền nhà" },
-        { value: "Sửa đồ đạc" },
-      ],
+      expenseCategoryList: [],
       // resources
       myEnum,
       resource,
-      labels: resource.spending_list.table_header,
+      labels: resource.expense_list.table_header,
       inputType: resource.common.input_type,
     };
   },

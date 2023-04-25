@@ -1,0 +1,10 @@
+.icon {
+  background-repeat: no-repeat;
+  background: url('../icons/qlts-icon.png');
+}
+
+.icon--tick {
+  background-position: -71px -512px;
+  width: 11px;
+  height: 8px;
+}

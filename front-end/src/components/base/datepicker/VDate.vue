@@ -2,7 +2,7 @@
   <div class="myDate">
     <label for="">{{ label }}</label>
     <el-date-picker
-      v-model="spendingDate"
+      v-model="expenseDate"
       type="date"
       popper-class="date-picker"
       format="DD/MM/YYYY"
@@ -46,7 +46,7 @@ export default {
   },
   data() {
     return {
-      spendingDate: new Date(),
+      expenseDate: new Date(),
       shortcuts: [
         {
           text: "Today",

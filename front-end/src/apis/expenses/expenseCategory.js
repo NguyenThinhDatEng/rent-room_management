@@ -1,13 +1,13 @@
 import httpClient from "../httpClient";
 
-const END_POINT = "";
+const END_POINT = "/expense_category";
 
 /**
- * API lấy danh sách tất cả chi phí
+ * API lấy danh sách tất cả loại chi phí
  * @returns res is a promise
- * @author NVThinh (08-03-2023)
+ * @author NVThinh (02-04-2023)
  */
-const getAllExpense = () => {
+const getAllExpenseCategories = () => {
   try {
     const res = httpClient.get(END_POINT);
     return res;
@@ -16,4 +16,4 @@ const getAllExpense = () => {
   }
 };
 
-export { getAllExpense };
+export { getAllExpenseCategories };

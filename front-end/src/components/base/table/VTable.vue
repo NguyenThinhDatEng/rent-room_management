@@ -77,7 +77,7 @@ export default {
     initTableHeadData: function () {
       let me = this;
       // init content for each object in tableData
-      const contents = resource.spending_list.table_header;
+      const contents = resource.expense_list.table_header;
       this.tableConfig.forEach((item) => {
         // init tableHeadData
         me.tableHeadData.push({ ...item });
@@ -92,17 +92,22 @@ export default {
     /**
      * @description initialize data for table foot
      * @author NVThinh 06/03/2023
+     * @modified: nvthinh 02/04/2023 convert cost to number
      */
     initTableFootData: function () {
       let me = this;
-      me.tFootConfigs = me.tableConfig.filter((item) => {
-        return item.type === me.dataType.money;
-      });
-      me.tFootConfigs.forEach((item) => {
-        item.value = me.tableData.reduce((acc, obj) => {
-          return acc + obj[item.col];
-        }, 0);
-      });
+      try {
+        me.tFootConfigs = me.tableConfig.filter((item) => {
+          return item.type === me.dataType.money;
+        });
+        me.tFootConfigs.forEach((item) => {
+          item.value = me.tableData.reduce((acc, obj) => {
+            return acc + Number(obj[item.col]);
+          }, 0);
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     /**

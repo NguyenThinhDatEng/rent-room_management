@@ -35,13 +35,22 @@ export default {
     ExpensePopup,
   },
 
-  async created() {
+  created() {
     // call api to get data for table
-    await getAllExpense().then((res) => {
-      if (res && res.data) {
-        this.tableData = res.data;
-      }
-    });
+    getAllExpense()
+      .then((res) => {
+        if (res && res.data) {
+          this.tableData = res.data;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    fetch("http://localhost:3000/api/v1")
+      .then((res) => res.json)
+      .then((data) => console.log(data))
+      .catch((e) => console.log(e));
   },
 
   methods: {
@@ -67,49 +76,50 @@ export default {
           width: 40,
         },
         {
-          col: resource.spending_list.table_header.numerical_order.en,
+          col: resource.expense_list.table_header.numerical_order.en,
           type: myEnum.data_type.number,
           width: 50,
         },
         {
-          col: resource.spending_list.table_header.spending_category.en,
+          col: resource.expense_list.table_header.expense_category_name.en,
           type: myEnum.data_type.text,
           width: 150,
           textAlign: "left",
           padding: "0 0 0 8px",
         },
         {
-          col: resource.spending_list.table_header.description.en,
+          col: resource.expense_list.table_header.description.en,
           type: myEnum.data_type.text,
           textAlign: "left",
         },
         {
-          col: resource.spending_list.table_header.amount.en,
+          col: resource.expense_list.table_header.cost.en,
           type: myEnum.data_type.money,
           width: 200,
         },
         {
-          col: resource.spending_list.table_header.payer.en,
-          type: myEnum.data_type.text,
-          width: 100,
-        },
-        {
-          col: resource.spending_list.table_header.spending_date.en,
-          type: myEnum.data_type.date,
-          width: 100,
-        },
-        {
-          col: resource.spending_list.table_header.location.en,
+          col: resource.expense_list.table_header.payer.en,
           type: myEnum.data_type.text,
           width: 150,
         },
         {
-          col: resource.spending_list.table_header.images.en,
+          col: resource.expense_list.table_header.expense_date.en,
+          type: myEnum.data_type.date,
+          width: 120,
+        },
+        {
+          col: resource.expense_list.table_header.expense_location.en,
+          type: myEnum.data_type.text,
+          width: 150,
+          textAlign: "left",
+        },
+        {
+          col: resource.expense_list.table_header.attach_images.en,
           type: myEnum.data_type._icon,
           width: 108,
         },
         {
-          col: resource.spending_list.table_header.feature.en,
+          col: resource.expense_list.table_header.feature.en,
           type: myEnum.data_type._function,
           width: 100,
         },

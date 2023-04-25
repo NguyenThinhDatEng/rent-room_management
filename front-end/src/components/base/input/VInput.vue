@@ -1,16 +1,35 @@
 <template>
   <div class="myInput">
-    <label v-show="hasLabel">{{ label }}</label>
-    <div v-if="!isTextarea" class="input">
+    <!-- label -->
+    <label v-if="hasLabel">{{ label }}<span v-show="isRequired">*</span></label>
+    <!-- normal input -->
+    <div
+      v-if="!isTextarea"
+      :class="[
+        { 'has-border': hasBorder },
+        { 'is-error': errorConfig.isError },
+        'input',
+      ]"
+    >
       <input
         :type="type"
         :value="modelValue"
-        :style="{ width: getWidth(inputWidth), 'text-align': getTextAlign() }"
+        :placeholder="placeholder"
+        :style="{
+          width: inputWidth ? getWidth(inputWidth) : '100%',
+          'text-align': getTextAlign(),
+        }"
         @input="$emit('update:modelValue', getValue($event))"
+        :class="{ 'is-error': errorConfig.isError }"
       />
       <slot />
     </div>
+    <!-- textarea -->
     <textarea v-else @input="$emit('update:modelValue', getValue($event))" />
+    <!-- error message -->
+    <p v-show="errorConfig.isError" class="error-message">
+      {{ errorConfig.message }}
+    </p>
   </div>
 </template>
 
@@ -41,7 +60,7 @@ export default {
     }, // min length of input
     inputWidth: {
       type: [Number, String],
-      default: 100,
+      default: 0,
     }, // width of input
     label: {
       type: String,
@@ -50,12 +69,32 @@ export default {
       type: Boolean,
       default: false,
     }, // use textarea
+    hasBorder: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: "",
+    },
+    errorConfig: {
+      type: Object,
+      default() {
+        return { message: "", isError: false };
+      },
+    }, // change border color and display message when have some errors
+    isRequired: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   created() {
     // update hasLabel
     this.hasLabel = this.label != "";
   },
+
+  watch: {},
 
   methods: {
     /**
@@ -123,22 +162,35 @@ $border--default: #afafaf;
 
   label {
     text-align: left;
-    margin-bottom: 4px;
+    margin-bottom: 0.5rem;
+
+    span {
+      color: red;
+      padding-left: 4px;
+    }
   }
 
   .input {
     display: flex;
-    border: 1px solid $border--default;
     border-radius: 4px;
-    padding: 4px 8px;
     height: 40px;
+
+    &.has-border {
+      padding: 4px 8px;
+      border: 1px solid $border--default;
+    }
 
     input {
       border-radius: 4px;
       border: none;
+      width: 100%p;
 
       &:hover {
         border-color: $input__border--hover;
+      }
+
+      &.is-error {
+        border-color: red !important;
       }
     }
   }
@@ -153,6 +205,10 @@ $border--default: #afafaf;
     &:focus {
       border-color: $input__border--hover;
     }
+  }
+
+  .error-message {
+    color: red;
   }
 }
 
